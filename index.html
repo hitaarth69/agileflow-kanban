@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📋 AgileFlow - Kanban Board</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="app">
+        <!-- Header / Toolbar -->
+        <header>
+            <div class="header-left">
+                <h1>📋 AgileFlow</h1>
+                <span class="badge">Kanban</span>
+            </div>
+            <div class="header-center">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="🔍 Search cards..." />
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="theme-toggle" class="tool-btn" title="Toggle Theme">🌙</button>
+                <button id="undo-btn" class="tool-btn" title="Undo (Ctrl+Z)">↩️</button>
+                <button id="redo-btn" class="tool-btn" title="Redo (Ctrl+Y)">↪️</button>
+                <button id="export-btn" class="tool-btn" title="Export JSON">📤</button>
+                <button id="import-btn" class="tool-btn" title="Import JSON">📥</button>
+                <button id="add-column-btn" class="tool-btn primary">+ Add Column</button>
+            </div>
+        </header>
+
+        <!-- Status / Info -->
+        <div id="status-bar" class="status-bar">💾 All changes saved automatically</div>
+
+        <!-- Board Container (Columns) -->
+        <div id="board" class="board">
+            <!-- Columns are injected by JavaScript -->
+        </div>
+
+        <!-- Modal for Card Details -->
+        <div id="card-modal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <button class="modal-close" id="modal-close">✕</button>
+                <h2 id="modal-title">Edit Card</h2>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="modal-card-title">Title</label>
+                        <input type="text" id="modal-card-title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-card-desc">Description</label>
+                        <textarea id="modal-card-desc" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Labels</label>
+                        <div class="label-picker" id="label-picker">
+                            <button class="label-opt" data-color="#ef4444">🔴</button>
+                            <button class="label-opt" data-color="#f59e0b">🟠</button>
+                            <button class="label-opt" data-color="#22c55e">🟢</button>
+                            <button class="label-opt" data-color="#3b82f6">🔵</button>
+                            <button class="label-opt" data-color="#8b5cf6">🟣</button>
+                            <button class="label-opt" data-color="#ec4899">🩷</button>
+                            <button class="label-opt" data-color="#14b8a6">🩵</button>
+                        </div>
+                        <div id="modal-labels-display" class="label-display"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="modal-delete-btn" class="btn-danger">🗑️ Delete Card</button>
+                    <button id="modal-save-btn" class="btn-primary">💾 Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="import-file-input" accept=".json" style="display:none;" />
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
